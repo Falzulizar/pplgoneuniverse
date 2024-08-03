@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pplgoneuniverse</title>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <link rel="stylesheet" href="dist/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!-- NAVIGATION BAR -->
+    <nav class="nav">
+      <i class="uil uil-bars navOpenBtn"></i>
+      <a href="#" class="logo">PPLGONEUNIVERSE</a>
+
+      <ul class="nav-links">
+        <i class="uil uil-times navCloseBtn"></i>
+        <li><a href="#" class="garis">Home</a></li>
+        <li><a href="#" class="garis">Gallery</a></li>
+        <li><a href="#" class="garis">Structure</a></li>
+        <li><a href="#" class="garis">Schedule</a></li>
+      </ul>
+
+      <div class="logs">
+        <i class="uil uil-search search-icon" id="searchIcon"></i>
+      </div>
+      <div class="search-box">
+        <i class="uil uil-search search-icon"></i>
+        <input type="text" placeholder="Search here..." />
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-text">
+          <h4>WELCOME TO</h4>
+          <h1 class="glow">XII PPLG 1</h1>
+          <h4>SMKN 1 TIRTAJAYA</h4>
+          <ul>
+            <li class="glow"><i class="uil uil-mars"></i>20</li>
+            <li class="glow"><i class="uil uil-venus"></i>20</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <!-- <section>
+          <h1 class="text-center">CLASS GALLERY</h1>
+          <div class="image-container">
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+            <div class="image"><img src="dist/images/herobg.jpeg" alt=""></div>
+          </div>
+          <div class="popup-image">
+            <span>&times;</span>
+            <img src="dist/images/herobg.jpeg" alt="">
+          </div>
+        </section> -->
+
+        <!-- GALLERY -->
+        <section class="gallery">
+          <h1 class="text-center">CLASS GALLERY</h1>
+          <div class="carousel-container">
+            <div class="carousel">
+              <div class="slide1">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+              <div class="slide2">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+              <div class="slide3">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+              <div class="slide4">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+              <div class="slide5">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+              <div class="slide6">
+                <div class="item" style="background-image: url('dist/images/herobg.jpeg');"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="Schedule" style="height: 100vh;">
+
+        </section>
+      
+    </div>
+
+    <script src="dist/js/navbar.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      var carousel = $(".carousel"),
+        items = $(".item"),
+        currdeg = 0,
+        intervalId = null,
+        rotationInProgress = false;
+
+      var mouseDownX = 0;
+      var mouseUpX = 0;
+
+      $(".carousel").on("mousedown", function (event) {
+        mouseDownX = event.pageX;
+        stopRotation();
+      });
+
+      $(".carousel").on("mousemove", function (event) {
+        if (mouseDownX !== 0) {
+          mouseUpX = event.pageX;
+        }
+      });
+
+      $(".carousel").on("mouseup", function (event) {
+        if (mouseDownX !== 0) {
+          handleSwipe();
+        }
+        mouseDownX = 0;
+        mouseUpX = 0;
+        startRotation();
+      });
+
+      function handleSwipe() {
+        var swipeThreshold = 50; // Minimum swipe distance required to trigger a rotation
+
+        if (mouseUpX - mouseDownX > swipeThreshold) {
+          // Swipe right
+          rotate({ data: { d: "p" } });
+        } else if (mouseDownX - mouseUpX > swipeThreshold) {
+          // Swipe left
+          rotate({ data: { d: "n" } });
+        }
+      }
+
+      function rotate(e) {
+        if (rotationInProgress) {
+          return; // Ignore rotation request if it's already in progress
+        }
+
+        rotationInProgress = true;
+
+        if (e.data.d == "n") {
+          currdeg = currdeg - 60;
+        }
+        if (e.data.d == "p") {
+          currdeg = currdeg + 60;
+        }
+        carousel.css({
+          "-webkit-transform": "rotateY(" + currdeg + "deg)",
+          "-moz-transform": "rotateY(" + currdeg + "deg)",
+          "-o-transform": "rotateY(" + currdeg + "deg)",
+          transform: "rotateY(" + currdeg + "deg)",
+        });
+        items.css({
+          "-webkit-transform": "rotateY(" + -currdeg + "deg)",
+          "-moz-transform": "rotateY(" + -currdeg + "deg)",
+          "-o-transform": "rotateY(" + -currdeg + "deg)",
+          transform: "rotateY(" + -currdeg + "deg)",
+        });
+
+        setTimeout(function () {
+          rotationInProgress = false;
+        }, 1000); // Set rotationInProgress to false after 1 second to allow rotation to complete
+      }
+
+      function startRotation() {
+        if (intervalId === null) {
+          intervalId = setInterval(function () {
+            rotate({ data: { d: "n" } });
+          }, 10000);
+        }
+      }
+
+      function stopRotation() {
+        if (intervalId !== null) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
+
+      // Start the rotation initially
+      startRotation();
+
+      // Detect visibility change and stop/start rotation accordingly
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "hidden") {
+          stopRotation();
+        } else if (document.visibilityState === "visible") {
+          startRotation();
+        }
+      });
+    </script>
+  </body>
+</html>

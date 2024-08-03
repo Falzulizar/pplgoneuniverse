@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Timeline</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito:300,400,700&display=swap">
+    <style>
+        :root {
+            --member-animation: all 0.35s ease-in-out;
+            --font-family-1: "Josefin Sans", sans-serif;
+            --font-family-2: Nunito, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family-2);
+            background: rgb(0, 17, 46);
+            background: linear-gradient(171deg, rgba(0, 17, 46, 1) 0%, rgba(29, 21, 148, 1) 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* TIMELINE */
+        #timeline-container {
+            overflow: auto;
+            padding: 60px 0;
+        }
+
+        .inner-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            text-align: center;
+            font-family: var(--font-family-1);
+            font-weight: 700;
+            font-size: 3rem;
+            color: white;
+            margin-top: 0;
+        }
+
+        .timeline {
+            margin: 0 auto;
+            position: relative;
+            left: 120px;
+            width: 80%;
+            max-width: 900px;
+            margin-top: 16px;
+            margin-left: 5%;
+        }
+
+        .timeline-item {
+            color: #ffffff;
+            font-family: var(--font-family-2);
+            text-align: center;
+            font-size: 1.4rem;
+            padding: 1rem 1.5rem 1rem 1.5rem;
+            border-left: 4px solid #fff;
+            border-bottom: 1px solid #ffffff;
+            position: relative;
+            list-style-type: none;
+            --item-width: calc(100%);
+        }
+
+        .timeline-item::after {
+            content: attr(data-date);
+            position: absolute;
+            right: calc(var(--item-width) + 40px);
+            top: 16px;
+            float: right;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .timeline-item::before {
+            content: "";
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            position: absolute;
+            left: -10px;
+            top: 21px;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .timeline {
+                left: 85px;
+            }
+
+            .timeline-item {
+                font-size: 1.1rem;
+                padding: 1rem 1.5rem 1rem 0.5rem;
+            }
+
+            .timeline-item::after {
+                right: calc(var(--item-width) + 30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="timeline-container">
+        <div class="inner-container">
+            <h2 class="heading">Schedule</h2>
+            <ul class="timeline">
+                <li class="timeline-item" data-date="22 Jan 2020">Mentor / Participant Registration Begins</li>
+                <li class="timeline-item" data-date="3 Feb 2020">Mentor Registration Closes</li>
+                <li class="timeline-item" data-date="14 Feb 2020">Participant Registration Closes</li>
+                <li class="timeline-item" data-date="17 Feb 2020">Projects Announced</li>
+                <li class="timeline-item" data-date="17-23 Feb 2020">Acceptance Mails Sent</li>
+                <li class="timeline-item" data-date="24-29 Feb 2020">Community Bonding</li>
+                <li class="timeline-item" data-date="1 Mar 2020">Event Begins</li>
+                <li class="timeline-item" data-date="31 May 2020">Event Ends</li>
+                <li class="timeline-item" data-date="15 Jun 2020">Results Out</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
